@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Input, Message,MessageBox } from 'element-ui'
+import { Button, Input, Message, MessageBox, Pagination, Card, Container, Table } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Input)
