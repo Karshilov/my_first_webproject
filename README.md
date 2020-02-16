@@ -1,5 +1,4 @@
-# hello-world
-
+# 萌新
 ## Project setup
 ```
 yarn install
