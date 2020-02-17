@@ -273,7 +273,7 @@ export default {
         }
       });
       if (fg === true) {
-        await api.post('/api/answers', this.answer);
+        await api.post('/answers', this.answer);
         this.$message({
           type: "success",
           message: "提交成功~"

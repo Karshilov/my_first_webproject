@@ -6,7 +6,7 @@ import qs from 'querystring'
 export default new Vue({
   data: {
     axios: axios.create({
-      baseURL: '127.0.0.1:3000',
+      baseURL: 'http://localhost:3000',
       timeout: 1000,
       headers: { 'Content-Type': 'application/json' },
       validateStatus: () => true
