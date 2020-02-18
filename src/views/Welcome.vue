@@ -29,9 +29,6 @@ export default {
         name: "test",
       });
     },
-    print() {
-      console.log(this.screenWidth);
-    }
   }
 };
 </script>
