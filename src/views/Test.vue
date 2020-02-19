@@ -468,6 +468,7 @@ export default {
       if (this.tableData[this.currentPage - 1].other === true) {
         if (this.input != '') {
           this.answer[this.currentPage - 1] = ("O." + this.input);
+          this.input = '';
         }
       }
       this.currentPage++;
