@@ -2,29 +2,13 @@
   <div class="welcome">
     <background title></background>
     <div class="app-title">
-      <el-card class="app-text" shadow="always">
-        <h3>问卷demo</h3>
-        <el-form :model="userInfo" class="app-form" status-icon :rules="rules" ref="userInfo">
-          <el-form-item prop="userName">
-            <el-input v-model="userInfo.userName" placeholder="请输入用户名"  @keyup.enter.native="gotoTest('userInfo')"></el-input>
-          </el-form-item>
-          <el-form-item prop="passWord">
-            <el-input type="password" v-model="userInfo.passWord" placeholder="请输入密码" auto-complete="off" @keyup.enter.native="gotoTest('userInfo')"></el-input>
-          </el-form-item>
-        </el-form>
-        <el-button
-          class="app-button"
-          size="medium"
-          type="success"
-          @click="gotoTest('userInfo')"
-        >点击登录</el-button>
-      </el-card>
+      
     </div>
   </div>
 </template>
 
 <script>
-import { Button, Form, FormItem, Input, Card } from "element-ui";
+//import { Button, Form, FormItem, Input, Card } from "element-ui";
 import Background from "../components/Background.vue";
 var validateUser = async (rule, value, callback) => {
   if (value === "") {
@@ -64,11 +48,11 @@ export default {
     };
   },
   components: {
-    "el-button": Button,
+    /*"el-button": Button,
     "el-form": Form,
     "el-form-item": FormItem,
     "el-input": Input,
-    "el-card": Card,
+    "el-card": Card,*/
     background: Background
   },
   methods: {

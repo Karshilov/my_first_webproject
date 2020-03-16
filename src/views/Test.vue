@@ -145,8 +145,8 @@
       </el-form>
       <el-row>
         <el-button v-if="currentPage>1" type="primary" size="mini" @click="toLast">上一题</el-button>
-        <el-button v-if="currentPage<3" type="primary" size="mini" @click="toNext">下一题</el-button>
-        <el-button v-if="currentPage===3" type="success" size="mini" @click="submit">点击提交</el-button>
+        <el-button v-if="currentPage<tableData.length" type="primary" size="mini" @click="toNext">下一题</el-button>
+        <el-button v-if="currentPage===tableData.length" type="success" size="mini" @click="submit">点击提交</el-button>
       </el-row>
     </div>
   </div>
@@ -189,32 +189,6 @@ export default {
           choiceG: "",
           choiceH: ""
         },
-        {
-          type: "radio",
-          other: true,
-          question: "你到哪里去？",
-          choiceA: "A.日本",
-          choiceB: "B.美国",
-          choiceC: "C.非洲",
-          choiceD: "D.不知道",
-          choiceE: "E.冈比亚",
-          choiceF: "F.艾泽拉斯",
-          choiceG: "G.仙峰寺",
-          choiceH: "H.洛斯里克的高塔"
-        },
-        {
-          type: "checkbox",
-          other: false,
-          question: "你去干什么？",
-          choiceA: "A.抢金坷垃",
-          choiceB: "B.买金坷垃",
-          choiceC: "C.送金坷垃",
-          choiceD: "D.不知道",
-          choiceE: "E.拯救教宗的舞娘",
-          choiceF: "F.寻找无目的圣女",
-          choiceG: "G.采摘仙峰寺的红叶",
-          choiceH: "H.熄灭薪火"
-        }
       ],
       result: {
         qa: [[], [], []],
@@ -246,6 +220,7 @@ export default {
       if (this.tableData[this.currentPage - 1].other === true) {
         if (this.input != '') {
           this.answer[this.currentPage - 1] = ("O." + this.input);
+          this.input = '';
         }
       }
       this.currentPage++;
@@ -262,8 +237,9 @@ export default {
         return ;
       }
       var fg = true;
-      this.answer[this.currentPage - 1] = this.result.qa[this.currentPage - 1];
-      this.answer.forEach(s => {
+      this.answer.push(this.result.qa[this.currentPage - 1]);
+      for (let i = 0; i < this.tableData.length; i++) {
+        var s = this.answer[i];
         if (fg === true && s.length === 0) {
           this.$message({
             type: "warning",
@@ -271,7 +247,7 @@ export default {
           });
           fg = false;
         }
-      });
+      }
       if (fg === true) {
         await api.post('/api/answers', this.answer);
         this.$message({
