@@ -6,8 +6,8 @@ import qs from 'querystring'
 export default new Vue({
   data: {
     axios: axios.create({
-      baseUrl: '127.0.0.1:3000',
-      timeout: 1000,
+      baseURL: 'http://localhost:3000',
+      timeout: 6000,
       headers: { 'Content-Type': 'application/json' },
       validateStatus: () => true
     })
@@ -21,8 +21,6 @@ export default new Vue({
       return this.handleResponse(await this.axios.get(route + params))
     },
     async post(route = '/', data = {}) {
-      console.log(data)
-      console.log(route)
       return this.handleResponse(await this.axios.post(route, data))
     },
     async put(route = '/', data = {}) {
@@ -36,15 +34,12 @@ export default new Vue({
     handleResponse(response) {
       let { status: httpStatus, data: jsonData } = response
       if (httpStatus < 400) {
-        let { code, result, reason } = jsonData
-
-        if (code < 400) {
-          return result
+        if (jsonData === 'success') {
+          return 'success';
         }
         // 出错时的处理
         else {
-          Vue.toasted.show('请求失败：' + reason)
-          throw new Error(reason)
+          Vue.toasted.show('请求失败')
         }
       } else {
         Vue.toasted.show(`请求出错 (${ httpStatus })`)

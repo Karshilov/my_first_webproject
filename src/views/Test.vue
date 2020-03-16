@@ -5,7 +5,7 @@
       <h3>问题{{currentPage}}</h3>
       <el-form :model="result" style="font-size:24px;">
         <el-form-item>
-          <h4>{{tableData[currentPage - 1].question}}</h4>
+          <h4 v-html="tableData[currentPage - 1].question"></h4>
           <el-radio-group
             v-if="tableData[currentPage - 1].type==='radio'"
             v-model="result.qa[currentPage - 1]"
@@ -170,6 +170,7 @@ export default {
   name: "welcome",
   data() {
     return {
+      totalSize: 20,
       already: false,
       input: "",
       screenWidth: document.body.clientWidth,
@@ -179,11 +180,50 @@ export default {
         {
           type: "radio",
           other: false,
-          question: "你从哪里来？",
-          choiceA: "A.河北省",
-          choiceB: "B.德国",
-          choiceC: "C.苏联",
-          choiceD: "D.不知道",
+          question: "请问您的性别？",
+          choiceA: "A.男",
+          choiceB: "B.女",
+          choiceC: "",
+          choiceD: "",
+          choiceE: "",
+          choiceF: "",
+          choiceG: "",
+          choiceH: ""
+        },
+        {
+          type: "radio",
+          other: false,
+          question: "请问您所学的学科种类是？",
+          choiceA: "A.文",
+          choiceB: "B.理",
+          choiceC: "C.工",
+          choiceD: "D.医",
+          choiceE: "",
+          choiceF: "",
+          choiceG: "",
+          choiceH: ""
+        },
+        {
+          type: "radio",
+          other: false,
+          question: "请问您所在的年级",
+          choiceA: "A.大一",
+          choiceB: "B.大二",
+          choiceC: "C.大三",
+          choiceD: "D.大四",
+          choiceE: "E.硕士在读",
+          choiceF: "F.博士在读",
+          choiceG: "",
+          choiceH: ""
+        },
+        {
+          type: "radio",
+          other: false,
+          question: "请问您的政治面貌是？",
+          choiceA: "A.群众",
+          choiceB: "B.共青团员",
+          choiceC: "C.共青团员(已提交入党申请书)",
+          choiceD: "D.党员(含预备党员)",
           choiceE: "",
           choiceF: "",
           choiceG: "",
@@ -191,9 +231,9 @@ export default {
         },
       ],
       result: {
-        qa: [[], [], []],
+        qa: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
       },
-      answer: [[], [], []]
+      answer: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
     };
   },
   components: {
@@ -254,7 +294,6 @@ export default {
           type: "success",
           message: "提交成功~"
         });
-        console.log(this.answer);
         this.already = true;
       }
     }
@@ -264,12 +303,18 @@ export default {
 
 <style lang="less" scoped>
 .app-question {
+  margin-left: 10px;
+  margin-right: 10px;
   margin: 10px;
 }
 .app-choice {
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 8px;
 }
 .app-choice2 {
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: -5px;
 }
 .bg-orange {
@@ -290,6 +335,8 @@ export default {
 }
 .app-title {
   display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
   flex-direction: column;
   align-items: center;
   animation: fadeIn 2s;

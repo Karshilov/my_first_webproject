@@ -21,11 +21,6 @@ export default {
       screenWidth: document.body.clientWidth
     };
   },
-  methods: {
-    print() {
-      console.log(this.screenWidth);
-    }
-  }
 };
 </script>
 
